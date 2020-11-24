@@ -6,6 +6,10 @@ nameInputBtn = document.querySelector(".name-inputBtn");
 const USER_NAME_LS = "userName";
 const SHOWING = "showing";
 
+function showName(name){
+  title.innerText = `Hellow lovely ${name}`;
+}
+
 function saveName(name){
   localStorage.setItem(USER_NAME_LS,name);
 }
@@ -18,7 +22,10 @@ function askForName(){
 function submitHandle(event){
   event.preventDefault();
   if(nameInput.value !==""){
+    showName(nameInput.value);
     saveName(nameInput.value);
+    nameInput.value = "";
+    nameForm.classList.remove(SHOWING);
   }
 }
 
@@ -27,6 +34,9 @@ function init(){
     nameForm.classList.add(SHOWING);
     askForName();
     nameForm.addEventListener("submit",submitHandle);
+  }else{
+    nameForm.classList.remove(SHOWING);
+    showName(localStorage.getItem(USER_NAME_LS));
   }
 
 }
