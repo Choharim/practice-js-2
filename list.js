@@ -44,7 +44,14 @@ function submitListHandle(event){
 
 function init(){
   listForm.addEventListener("submit",submitListHandle);
-  
+  if(localStorage.getItem(LIST_LS) !==null){
+    const loadedListArray = JSON.parse(localStorage.getItem(LIST_LS));
+
+    loadedListArray.forEach(function(todo){
+      showList(todo.list);
+      makeListArray(todo.list);
+    });
+  }
 }
 init();
 
