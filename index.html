@@ -20,10 +20,30 @@
       <h1 class="title"></h1>
       <button class="name-delBtn"><i class="fas fa-backspace"></i></button>
     </header>
-    <form class="name-form">
-      <input class="name-input" />
-      <button class="name-inputBtn"><i class="fas fa-sign-in-alt"></i></button>
-    </form>
+    <section class="name">
+      <form class="name-form">
+        <input class="name-input" />
+        <button class="name-inputBtn">
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </form>
+    </section>
+    <section class="list">
+      <form class="list-form">
+        <input class="list-input" />
+        <button class="list-inputBtn">
+          <i class="far fa-plus-square"></i>
+        </button>
+      </form>
+      <select class="list-filter">
+        <option value="all">ALL</option>
+        <option value="done">Done</option>
+        <option value="notdone">Not Done</option>
+      </select>
+    </section>
+    <ul class="list-container"></ul>
+
     <script src="userName.js"></script>
+    <script src="list.js"></script>
   </body>
 </html>

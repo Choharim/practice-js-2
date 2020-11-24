@@ -14,6 +14,9 @@
 }
 
 .fa-sign-in-alt,
-.fa-backspace {
+.fa-backspace,
+.fa-plus-square,
+.fa-check-circle,
+.fa-minus-circle {
   pointer-events: none;
 }

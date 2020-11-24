@@ -22,7 +22,7 @@ function askForName(){
   nameInput.placeholder = "Write your name";
 }
 
-function submitHandle(event){
+function submitNameHandle(event){
   event.preventDefault();
   if(nameInput.value !==""){
     showName(nameInput.value);
@@ -34,20 +34,22 @@ function submitHandle(event){
 
 function resetUserLS(){
   localStorage.removeItem(USER_NAME_LS);
-  init();
+  nameForm.classList.add(SHOWING);
+  askForName();
 }
 
 function init(){
   if(localStorage.getItem(USER_NAME_LS) === null){
     nameForm.classList.add(SHOWING);
     askForName();
-    nameForm.addEventListener("submit",submitHandle);
+    nameForm.addEventListener("submit",submitNameHandle);
   }else{
     nameForm.classList.remove(SHOWING);
     showName(localStorage.getItem(USER_NAME_LS));
   }
-  nameDeleteBtn.addEventListener("click",resetUserLS)
+  nameDeleteBtn.addEventListener("click",resetUserLS);
 }
 init();
+
 
 
