@@ -1,4 +1,5 @@
-const title = document.querySelector("h1"),
+const title = document.querySelector(".title"),
+nameDeleteBtn = document.querySelector(".name-delBtn"),
 nameForm = document.querySelector(".name-form"),
 nameInput = document.querySelector(".name-input"),
 nameInputBtn = document.querySelector(".name-inputBtn");
@@ -8,6 +9,7 @@ const SHOWING = "showing";
 
 function showName(name){
   title.innerText = `Hellow lovely ${name}`;
+  nameDeleteBtn.classList.add(SHOWING);
 }
 
 function saveName(name){
@@ -15,6 +17,7 @@ function saveName(name){
 }
 
 function askForName(){
+  nameDeleteBtn.classList.remove(SHOWING);
   title.innerText = "What is your name?";
   nameInput.placeholder = "Write your name";
 }
@@ -29,6 +32,11 @@ function submitHandle(event){
   }
 }
 
+function resetUserLS(){
+  localStorage.removeItem(USER_NAME_LS);
+  init();
+}
+
 function init(){
   if(localStorage.getItem(USER_NAME_LS) === null){
     nameForm.classList.add(SHOWING);
@@ -38,7 +46,7 @@ function init(){
     nameForm.classList.remove(SHOWING);
     showName(localStorage.getItem(USER_NAME_LS));
   }
-
+  nameDeleteBtn.addEventListener("click",resetUserLS)
 }
 init();
 

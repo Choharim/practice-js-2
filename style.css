@@ -4,8 +4,8 @@
   box-sizing: border-box;
   font-family: "PT Serif", serif;
 }
-
-.name-form {
+.name-form,
+.name-delBtn {
   display: none;
 }
 
@@ -13,6 +13,7 @@
   display: flex;
 }
 
-.fa-sign-in-alt {
+.fa-sign-in-alt,
+.fa-backspace {
   pointer-events: none;
 }
