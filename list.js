@@ -3,9 +3,10 @@ listForm = document.querySelector(".list-form"),
 listInput = document.querySelector(".list-input"),
 listInputBtn = document.querySelector(".list-inputBtn"),
 listFilter = document.querySelector(".list-filter"),
-listContainer = document.querySelector(".list-container");
+listToDos = document.querySelector(".list-todos");
 
 const LIST_LS = "list";
+const CHECKED = "checked";
 let listArray = [];
 
 function saveList(){
@@ -19,18 +20,30 @@ function makeListArray(todo){
   listArray.push(listObj);
 }
 
+function checkList(event){
+  const checkedBtn = event.target;
+  const checkedListContainer = checkedBtn.parentNode;
+  const checkedList = checkedListContainer.firstChild;
+
+  checkedList.classList.toggle(CHECKED);
+}
+
 function showList(todo){
-  const li = document.createElement("li"),
+  const listContainer = document.createElement("div"),
+  listToDo = document.createElement("li"),
   checkBtn = document.createElement("button"),
   delBtn = document.createElement("button");
 
-  listContainer.appendChild(li);
+  listToDos.appendChild(listContainer);
+  listContainer.appendChild(listToDo);
   listContainer.appendChild(checkBtn);
   listContainer.appendChild(delBtn);
 
-  li.innerText = todo;
+  listToDo.innerText = todo;
   checkBtn.innerHTML = '<i class="far fa-check-circle"></i>';
   delBtn.innerHTML = '<i class="fas fa-minus-circle"></i>';
+
+  checkBtn.addEventListener("click",checkList);
 }
 
 function submitListHandle(event){
