@@ -5,6 +5,14 @@
   font-family: "PT Serif", serif;
 }
 
+.name-form {
+  display: none;
+}
+
+.showing {
+  display: flex;
+}
+
 .fa-sign-in-alt {
   pointer-events: none;
 }

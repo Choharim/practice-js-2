@@ -1,42 +1,35 @@
-const nameHeader = document.querySelector(".title");
-const nameSection = document.querySelector(".name");
+const title = document.querySelector("h1"),
+nameForm = document.querySelector(".name-form"),
+nameInput = document.querySelector(".name-input"),
+nameInputBtn = document.querySelector(".name-inputBtn");
 
 const USER_NAME_LS = "userName";
+const SHOWING = "showing";
 
-function showName(name){
-  const nameShow = document.createElement("h2");
-
-  nameHeader.appendChild(nameShow);
-  nameShow.innerText = `Hellow lovely ${name}!`;
+function saveName(name){
+  localStorage.setItem(USER_NAME_LS,name);
 }
 
 function askForName(){
-  const nameAsk = document.createElement("h1");
-  const nameForm = document.createElement("form");
-  const nameInput = document.createElement("input");
-  const nameInputBtn = document.createElement("button");
-
-
-  nameHeader.appendChild(nameAsk);
-  nameSection.appendChild(nameForm);
-  nameForm.appendChild(nameInput);
-  nameForm.appendChild(nameInputBtn);
-
-  nameForm.classList.add ("name-form");
-  nameInput.classList.add("name-input");
-  nameInputBtn.classList.add("name-inputBtn");
-
-  nameAsk.innerText = "What is your name?";
+  title.innerText = "What is your name?";
   nameInput.placeholder = "Write your name";
-  nameInputBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i>';
+}
+
+function submitHandle(event){
+  event.preventDefault();
+  if(nameInput.value !==""){
+    saveName(nameInput.value);
+  }
 }
 
 function init(){
   if(localStorage.getItem(USER_NAME_LS) === null){
+    nameForm.classList.add(SHOWING);
     askForName();
-  }else{
-    showName(localStorage.getItem(USER_NAME_LS));
+    nameForm.addEventListener("submit",submitHandle);
   }
-  
+
 }
 init();
+
+
