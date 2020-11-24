@@ -33,10 +33,10 @@ function deleteList(event){
   const deletedListContainer = deletedBtn.parentNode;
   const deletedList = deletedListContainer.firstChild;
 
-  const updateArray = listArray.filter(function(todo){
-    return todo.list !== deletedList.innerText;
+  const deletedIndex = listArray.findIndex(function(todo){
+    return todo.list === deletedList.innerText;
   });
-  listArray = updateArray;
+  listArray.splice(deletedIndex,1);
   saveList();
   deletedListContainer.remove();
 }
