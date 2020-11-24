@@ -8,7 +8,7 @@ const USER_NAME_LS = "userName";
 const SHOWING = "showing";
 
 function showName(name){
-  title.innerText = `Hellow lovely ${name}`;
+  title.innerText = `Hellow lovely ${name}!`;
   nameDeleteBtn.classList.add(SHOWING);
 }
 

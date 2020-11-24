@@ -7,7 +7,34 @@ listToDos = document.querySelector(".list-todos");
 
 const LIST_LS = "list";
 const CHECKED = "checked";
-let listArray = [];
+const listArray = [];
+
+function listFiltering(event){
+  const todoList = listToDos.childNodes;
+  const clickedOption = event.target.value;
+
+  if(clickedOption === "done"){
+    todoList.forEach(function(todo){
+      if(todo.firstChild.classList.contains(CHECKED)){
+        todo.style.display = "block";
+      }else{
+        todo.style.display = "none";
+      }
+    });
+  }else if(clickedOption === "notdone"){
+    todoList.forEach(function(todo){
+      if(!todo.firstChild.classList.contains(CHECKED)){
+        todo.style.display = "block";
+      }else{
+        todo.style.display = "none";
+      }
+    });
+  }else{
+    todoList.forEach(function(todo){
+      todo.style.display = "block"; 
+    });
+  }
+}
 
 function saveList(){
   localStorage.setItem(LIST_LS,JSON.stringify(listArray));
@@ -72,6 +99,7 @@ function submitListHandle(event){
 
 function init(){
   listForm.addEventListener("submit",submitListHandle);
+  listFilter.addEventListener("click",listFiltering);
   if(localStorage.getItem(LIST_LS) !==null){
     const loadedListArray = JSON.parse(localStorage.getItem(LIST_LS));
 
