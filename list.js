@@ -28,6 +28,19 @@ function checkList(event){
   checkedList.classList.toggle(CHECKED);
 }
 
+function deleteList(event){
+  const deletedBtn = event.target;
+  const deletedListContainer = deletedBtn.parentNode;
+  const deletedList = deletedListContainer.firstChild;
+
+  const updateArray = listArray.filter(function(todo){
+    return todo.list !== deletedList.innerText;
+  });
+  listArray = updateArray;
+  saveList();
+  deletedListContainer.remove();
+}
+
 function showList(todo){
   const listContainer = document.createElement("div"),
   listToDo = document.createElement("li"),
@@ -44,6 +57,7 @@ function showList(todo){
   delBtn.innerHTML = '<i class="fas fa-minus-circle"></i>';
 
   checkBtn.addEventListener("click",checkList);
+  delBtn.addEventListener("click",deleteList);
 }
 
 function submitListHandle(event){
@@ -52,6 +66,7 @@ function submitListHandle(event){
     showList(listInput.value);
     makeListArray(listInput.value);
     saveList();
+    listInput.value = "";
   }
 }
 
